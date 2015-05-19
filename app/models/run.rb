@@ -1,3 +1,3 @@
 class Run < ActiveRecord::Base
-  belongs_to :jumps
+  has_many :jumps
 end

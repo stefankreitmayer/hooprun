@@ -1,10 +1,5 @@
 class RunsController < ApplicationController
-  before_action :set_run, only: [:show, :edit, :update, :destroy]
-
-  # GET /runs
-  def index
-    @runs = Run.all
-  end
+  before_action :set_run, only: [:show, :edit, :update]
 
   # GET /runs/1
   def show
@@ -21,7 +16,7 @@ class RunsController < ApplicationController
 
   # POST /runs
   def create
-    @run = Run.new(run_params)
+    @run = Run.new
 
     if @run.save
       redirect_to @run, notice: 'Run was successfully created.'
@@ -32,27 +27,19 @@ class RunsController < ApplicationController
 
   # PATCH/PUT /runs/1
   def update
-    if @run.update(run_params)
+    if @run.update(update_run_params)
       redirect_to @run, notice: 'Run was successfully updated.'
     else
       render :edit
     end
   end
 
-  # DELETE /runs/1
-  def destroy
-    @run.destroy
-    redirect_to runs_url, notice: 'Run was successfully destroyed.'
+  private
+  def set_run
+    @run = Run.find(params[:id])
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_run
-      @run = Run.find(params[:id])
-    end
-
-    # Only allow a trusted parameter "white list" through.
-    def run_params
-      params.require(:run).permit(:jumps_id)
-    end
+  def update_run_params
+    params.require(:run).permit(:choice)
+  end
 end

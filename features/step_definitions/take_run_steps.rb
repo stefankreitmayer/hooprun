@@ -6,6 +6,6 @@ When(/^I click the link (.+)$/) do |text|
   click_link text
 end
 
-Then(/^I should see the run preparation form$/) do
-    pending # express the regexp above with the code you wish you had
+Then(/^I should see the run setup page$/) do
+  expect(page).to have_content('Are you ready')
 end
