@@ -7,4 +7,9 @@ Feature: Go for a run
   Scenario: Setup a run
     Given I am at the home page
     When I click the link Let's go for a run
-    Then I should see the run setup page
+    Then I should be on the run setup page
+
+  Scenario: Start a run
+    Given I am on the run setup page
+    When I click the button Let's go
+    Then I should see an obstacle
