@@ -15,6 +15,11 @@ RSpec.describe RunsController, type: :controller do
       get :show, {:id => run.to_param}, valid_session
       expect(assigns(:run)).to eq(run)
     end
+    it "assigns the obstacle" do
+      run = Run.create! valid_attributes
+      get :show, {:id => run.to_param}, valid_session
+      expect(assigns(:obstacle)).to be_a(Obstacle)
+    end
   end
 
   describe "GET #new" do

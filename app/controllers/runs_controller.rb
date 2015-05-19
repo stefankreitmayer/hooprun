@@ -3,6 +3,7 @@ class RunsController < ApplicationController
 
   # GET /runs/1
   def show
+    @obstacle = @run.jumps.last.obstacle
   end
 
   # GET /runs/new
@@ -19,7 +20,7 @@ class RunsController < ApplicationController
     @run = Run.new
 
     if @run.save
-      redirect_to @run, notice: 'Run was successfully created.'
+      redirect_to @run
     else
       render :new
     end

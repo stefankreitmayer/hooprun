@@ -1,9 +1,7 @@
-%p#notice= notice
+%h1= 'You are on the run. There is an obstacle.'
 
-%p
-  %b Jumps:
-  = @run.jumps
+= @question
+- @options.each do |option|
+  = option
 
-= link_to 'Edit', edit_run_path(@run)
-\|
-= link_to 'Back', runs_path
+= link_to 'Chicken wants to go home', '/'

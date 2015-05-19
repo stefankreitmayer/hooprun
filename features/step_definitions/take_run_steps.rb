@@ -19,6 +19,10 @@ Given(/^I am on the run setup page$/) do
   click_link "Let's go for a run"
 end
 
-Then(/^I should see an obstacle$/) do
-    pending # express the regexp above with the code you wish you had
+Then(/^I should see the latest obstacle$/) do
+  obstacle = Obstacle.last
+  expect(page).to have_content(obstacle.sentence)
+  obstacle.options.each do |option|
+    expect(page).to have_content(option)
+  end
 end

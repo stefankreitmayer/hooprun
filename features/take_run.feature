@@ -12,4 +12,4 @@ Feature: Go for a run
   Scenario: Start a run
     Given I am on the run setup page
     When I click the button Let's go
-    Then I should see an obstacle
+    Then I should see the latest obstacle
