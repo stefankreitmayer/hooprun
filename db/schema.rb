@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150519223903) do
+ActiveRecord::Schema.define(version: 20150520081631) do
 
   create_table "jumps", force: :cascade do |t|
     t.integer  "run_id",      null: false
@@ -33,11 +33,8 @@ ActiveRecord::Schema.define(version: 20150519223903) do
   end
 
   create_table "runs", force: :cascade do |t|
-    t.integer  "jumps_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  add_index "runs", ["jumps_id"], name: "index_runs_on_jumps_id"
 
 end
