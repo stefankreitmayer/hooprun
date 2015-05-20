@@ -21,7 +21,7 @@ end
 
 Then(/^I should see the latest obstacle$/) do
   obstacle = Obstacle.last
-  expect(page).to have_content(obstacle.sentence)
+  expect(page).to have_content(obstacle.question)
   obstacle.options.each do |option|
     expect(page).to have_content(option)
   end

@@ -1,7 +1,10 @@
 %h1= 'You are on the run. There is an obstacle.'
 
-= @question
-- @options.each do |option|
-  = option
+%p
+  = @obstacle.question
+%ul
+- @obstacle.options.each do |option|
+  %li= option
 
-= link_to 'Chicken wants to go home', '/'
+%p
+  = link_to 'Chicken wants to go home', '/'
