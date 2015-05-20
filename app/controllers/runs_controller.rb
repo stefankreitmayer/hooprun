@@ -3,8 +3,7 @@ class RunsController < ApplicationController
 
   # GET /runs/1
   def show
-    add_jump if @run.jumps.empty?
-    @obstacle = @run.jumps.last.obstacle
+    @obstacle = @run.current_jump.obstacle
   end
 
   # GET /runs/new
@@ -19,9 +18,7 @@ class RunsController < ApplicationController
   # POST /runs
   def create
     @run = Run.new
-
     if @run.save
-      add_jump
       redirect_to @run
     else
       render :new
@@ -47,8 +44,4 @@ class RunsController < ApplicationController
   #   puts 'PARAMS -----  '+ params.inspect
   #   params.require(:run).permit(:choice)
   # end
-
-  def add_jump
-    @run.jumps.create(obstacle: Obstacle.random)
-  end
 end
