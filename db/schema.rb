@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150519215752) do
+ActiveRecord::Schema.define(version: 20150519223903) do
+
+  create_table "jumps", force: :cascade do |t|
+    t.integer  "run_id",      null: false
+    t.integer  "obstacle_id", null: false
+    t.string   "choice"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "jumps", ["obstacle_id"], name: "index_jumps_on_obstacle_id"
+  add_index "jumps", ["run_id"], name: "index_jumps_on_run_id"
 
   create_table "obstacles", force: :cascade do |t|
     t.text     "question",       null: false
