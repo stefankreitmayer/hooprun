@@ -13,3 +13,13 @@ Feature: Go for a run
     Given I am on the run setup page
     When I click the button Let's go
     Then I should see the latest obstacle
+
+  Scenario: Answer correctly
+    Given I am at the first obstacle
+    When I answer correctly
+    Then I should see a different obstacle
+
+  Scenario: Answer incorrectly
+    Given I am at the first obstacle
+    When I answer incorrectly
+    Then I should see the same obstacle

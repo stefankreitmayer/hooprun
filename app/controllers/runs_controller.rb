@@ -1,5 +1,5 @@
 class RunsController < ApplicationController
-  before_action :set_run, only: [:show, :edit, :update]
+  before_action :set_run, only: [:show, :edit, :update, :jump]
 
   # GET /runs/1
   def show
@@ -23,6 +23,14 @@ class RunsController < ApplicationController
     else
       render :new
     end
+  end
+
+  # POST /runs/jump
+  def jump
+    if params.require(:choice) == @run.current_jump.correct_option
+      @run.next_jump
+    end
+    redirect_to @run
   end
 
   # PATCH/PUT /runs/1

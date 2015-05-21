@@ -4,7 +4,7 @@
   = @obstacle.question
 %ul
 - @obstacle.options.each do |option|
-  %li= option
+  %li= button_to option, 'jump', {params: {id: @run.id, choice: option.to_s}}
 
 %p
   = link_to 'Chicken wants to go home', '/'
