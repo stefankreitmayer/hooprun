@@ -74,6 +74,14 @@ RSpec.describe RunsController, type: :controller do
     # end
   end
 
+  describe 'POST #jump' do
+    it "redirects to the run" do
+      run = Run.create! valid_attributes
+      post :jump, {id: run.id, answer: '8'}, valid_session
+      expect(response).to redirect_to(run)
+    end
+  end
+
   # describe "PUT #update" do
   #   context "with valid params" do
   #     let(:new_attributes) {
