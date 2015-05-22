@@ -75,12 +75,46 @@ RSpec.describe RunsController, type: :controller do
   end
 
   describe 'POST #jump' do
-    it "redirects to the run" do
-      run = Run.create! valid_attributes
-      post :jump, {id: run.id, answer: '8'}, valid_session
-      expect(response).to redirect_to(run)
-    end
+    pending
+    # context 'correct answer' do
+    #   it 'advances one jump' do
+    #   end
+    #   it "redirects to the run" do
+    #   end
+    # end
+    # context 'incorrect answer' do
+    #   it "redirects to the run" do
+    #   end
+    # end
   end
+
+  # describe 'POST #jump' do
+  #   # let!(:run){Run.create!}
+  #   context 'correct answer' do
+  #     # let(:correct){
+  #     #   {id: run.id, answer: run.current_jump.obstacle.correct_option}
+  #     # }
+  #     it 'calls next_jump' do
+  #       expect(run).to receive(:next_jump)
+  #       puts '==== '+run.current_jump.inspect
+  #       post :jump, {id: run.id, answer: run.current_jump.obstacle.correct_option}, valid_session
+  #     end
+  #     # it "redirects to the run" do
+  #     #   expect(response).to redirect_to(run)
+  #     # end
+  #   end
+  #   # context 'incorrect answer' do
+  #   #   let(:incorrect){
+  #   #     {id: run.id, answer: incorrect}
+  #   #   }
+  #   #   it 'does not call next_jump' do
+  #   #     pending
+  #   #   end
+  #   #   it "redirects to the run" do
+  #   #     expect(response).to redirect_to(run)
+  #   #   end
+  #   # end
+  # end
 
   # describe "PUT #update" do
   #   context "with valid params" do

@@ -3,12 +3,14 @@ module TakeRunStepsHarness
     visit '/'
     click_link "Let's go for a run"
   end
-  def expect_to_see_latest_obstacle
-    obstacle = Obstacle.last
+  def ensure_obstacle_presence(obstacle)
     expect(page).to have_content(obstacle.question)
     obstacle.options.each do |option|
       expect(page).to have_button(option)
     end
+  end
+  def ensure_obstacle_absence(obstacle)
+    expect(page).not_to have_content(obstacle.question)
   end
 end
 
@@ -36,7 +38,7 @@ Given(/^I am on the run setup page$/) do
 end
 
 Then(/^I should see the latest obstacle$/) do
-  expect_to_see_latest_obstacle
+  ensure_obstacle_presence(Obstacle.last)
 end
 
 Given(/^I am at the first obstacle$/) do
@@ -49,7 +51,21 @@ When(/^I answer correctly$/) do
   click_button @answered_obstacle.correct_option
 end
 
+When(/^I answer incorrectly$/) do
+  @answered_obstacle = Obstacle.last
+  @answered_obstacle.options.each do |option|
+    if option!=@answered_obstacle.correct_option
+      click_button option
+      break
+    end
+  end
+end
+
 Then(/^I should see a different obstacle$/) do
-  expect(page).not_to have_content(@answered_obstacle.question)
-  expect_to_see_latest_obstacle
+  ensure_obstacle_presence(Obstacle.last)
+  ensure_obstacle_absence(@answered_obstacle)
+end
+
+Then(/^I should see the same obstacle$/) do
+  ensure_obstacle_presence(@answered_obstacle)
 end

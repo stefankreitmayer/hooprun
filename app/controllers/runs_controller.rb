@@ -27,7 +27,9 @@ class RunsController < ApplicationController
 
   # POST /runs/jump
   def jump
-    @run.next_jump
+    if params.require(:choice) == @run.current_jump.correct_option
+      @run.next_jump
+    end
     redirect_to @run
   end
 

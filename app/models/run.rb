@@ -7,5 +7,6 @@ class Run < ActiveRecord::Base
 
   def next_jump
     jumps.create!(obstacle: Obstacle.next)
+    jumps.last
   end
 end
