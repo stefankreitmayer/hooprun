@@ -1,9 +1,9 @@
 class RunsController < ApplicationController
-  before_action :set_run, only: [:show, :edit, :update, :jump]
+  before_action :set_run_and_jump, only: [:show, :edit, :update, :jump]
 
   # GET /runs/1
   def show
-    @obstacle = @run.current_jump.obstacle
+    set_obstacle
   end
 
   # GET /runs/new
@@ -25,27 +25,25 @@ class RunsController < ApplicationController
     end
   end
 
-  # POST /runs/jump
-  def jump
-    if params.require(:choice) == @run.current_jump.correct_option
+  # PUT/PATH /runs/update
+  def update
+    choice = params.require(:choice)
+    @run.current_jump.update!({choice: choice})
+    if choice == @run.current_jump.correct_option
       @run.next_jump
     end
     redirect_to @run
   end
 
-  # PATCH/PUT /runs/1
-  # def update
-  #   if @run.update(update_run_params)
-  #     redirect_to @run, notice: 'Run was successfully updated.'
-  #   else
-  #     render :edit
-  #   end
-  # end
-
   private
 
-  def set_run
+  def set_run_and_jump
     @run = Run.find(params[:id])
+    @jump = @run.current_jump
+  end
+
+  def set_obstacle
+    @obstacle = @run.current_jump.obstacle
   end
 
   # def update_run_params
