@@ -23,3 +23,4 @@ Feature: Go for a run
     Given I am at the first obstacle
     When I answer incorrectly
     Then I should see the same obstacle
+    And the correct solution should be highlighted

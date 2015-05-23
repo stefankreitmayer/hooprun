@@ -66,3 +66,8 @@ end
 Then(/^I should see the same obstacle$/) do
   ensure_obstacle_presence(@answered_obstacle)
 end
+
+Then(/^the correct solution should be highlighted$/) do
+  expect(find('.correct-option')).
+    to have_content(@answered_obstacle.correct_option)
+end
