@@ -5,9 +5,6 @@ module TakeRunStepsHarness
   end
   def ensure_obstacle_presence(obstacle)
     expect(page).to have_content(obstacle.question)
-    obstacle.options.each do |option|
-      expect(page).to have_button(option)
-    end
   end
   def ensure_obstacle_absence(obstacle)
     expect(page).not_to have_content(obstacle.question)
