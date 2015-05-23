@@ -2,9 +2,7 @@
 
 %p
   = @obstacle.question
-%ul
-- @obstacle.options.each do |option|
-  %li= button_to option, 'jump', {params: {id: @run.id, choice: option.to_s}}
+= render partial: 'options'
 
 %p
   = link_to 'Chicken wants to go home', '/'

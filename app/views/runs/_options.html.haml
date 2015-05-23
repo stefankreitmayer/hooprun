@@ -1,0 +1,6 @@
+%ul
+- @obstacle.options.each do |option|
+  - if @jump.choice && option != @jump.correct_option
+    %li= option
+  - else
+    %li= button_to option, @run, method: :patch, params: {choice: option.to_s}
